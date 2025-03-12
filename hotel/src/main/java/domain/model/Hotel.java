@@ -2,12 +2,19 @@ package domain.model;
 
 import java.math.BigDecimal;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class Hotel {
 
+	@Schema(name="idHotel", example="1")
 	private Long idHotel;
+	@Schema(name="name", example="Zenit")
 	private String name;
+	@Schema(name="category", example="3_stars")
 	private String category;
+	@Schema(name="price", example="50.22", description="value must be greater than 0")
 	private BigDecimal price;
+	@Schema(name="available", example="false")
 	private Boolean available;
 	
 	public Hotel() {

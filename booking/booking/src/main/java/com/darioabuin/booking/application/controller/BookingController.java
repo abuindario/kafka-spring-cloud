@@ -145,7 +145,11 @@ public class BookingController {
 					}
 				});
 	}
-
+	
+	@Operation(summary="Find all hotels.", description="This method uses Kafka to return all Hotels sent to a specific topic.",
+			responses= {
+					@ApiResponse(responseCode = "200", description = "This method returns a ResponseEntity object that includes in its body all the details of the Hotels sent to the topic.", content=@Content(schema=@Schema(implementation=HotelDto.class)))
+			})
 	@GetMapping("/bookings/hotels")
 	public ResponseEntity<List<HotelDto>> getAllHotels() {
 		return ResponseEntity.ok(kafkaHotelListener.getHotels());

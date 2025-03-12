@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import application.dto.HotelDto;
 import domain.api.HotelService;
 import domain.api.KafkaSender;
 import domain.model.Hotel;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
@@ -51,8 +53,14 @@ public class HotelController {
 			return ResponseEntity.ofNullable(hotelService.findByName(hotelName));
 	}
 
+	@Operation(summary="Post a new Hotel", description="This method inserts a new Hotel in the database given a valid HotelDto object.",
+			responses= {
+					@ApiResponse(responseCode = "200", description = "This method returns a ResponseEntity object that includes in its body all the details of the posted Hotel.", content=@Content(schema=@Schema(implementation=Hotel.class))),
+					@ApiResponse(responseCode = "400", description = "The HotelDto data is invalid, a valid name, category, price and availability must be provided.", content=@Content(schema=@Schema(implementation=HotelDto.class))),
+					@ApiResponse(responseCode = "500", description = "Error produced when inserting the Hotel in the database.", content=@Content)
+			})
 	@PostMapping("/hotels/new")
-	public ResponseEntity<?> postHotel(@RequestBody HotelDto hotelDto) {
+	public ResponseEntity<?> postHotel(@Parameter(description="HotelDto object.") @RequestBody HotelDto hotelDto) {
 		Hotel hotel = null;
 		try {
 			hotel = hotelService.postHotel(hotelDto);

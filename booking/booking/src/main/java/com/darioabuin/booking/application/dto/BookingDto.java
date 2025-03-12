@@ -1,10 +1,17 @@
 package com.darioabuin.booking.application.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class BookingDto {
+	@Schema(name="customerName", example="Aitor Tilla")
 	private String customerName;
+	@Schema(name="dni", example="12312312A")
 	private String dni;
+	@Schema(name="numberOfSeats", example="12")
 	private int numberOfSeats;
+	@Schema(name="idHotel", example="1")
 	private Long idHotel;
+	@Schema(name="idVuelo", example="1")
 	private Long idVuelo;
 
 	public BookingDto(String customerName, String dni, int numberOfSeats, Long idHotel, Long idVuelo) {

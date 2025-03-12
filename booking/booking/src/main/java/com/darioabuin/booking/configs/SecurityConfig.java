@@ -26,6 +26,7 @@ public class SecurityConfig {
 		http.csrf(cr -> cr.disable())
 			.authorizeHttpRequests( aut -> 
 				aut.requestMatchers("/bookings/hotels").permitAll()
+				.requestMatchers("/swagger-ui/**","/swagger-ui.html","/v3/api-docs/**").permitAll()
 				.requestMatchers(HttpMethod.GET).hasRole("ADMIN")
 				.anyRequest().permitAll())
 			.httpBasic(Customizer.withDefaults());

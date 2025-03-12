@@ -2,11 +2,17 @@ package application.dto;
 
 import java.math.BigDecimal;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class HotelDto {
 
+	@Schema(name="name", example="Zenit")
 	private String name;
+	@Schema(name="category", example="3_stars")
 	private String category;
+	@Schema(name="price", example="50.22", description="The value must be greater than 0")
 	private BigDecimal price;
+	@Schema(name="available", example="true", description="This is a booloean parameter")
 	private Boolean available;
 	
 	public HotelDto() {

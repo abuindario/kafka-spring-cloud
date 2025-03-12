@@ -1,10 +1,17 @@
 package com.darioabuin.booking.domain.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class Booking {
+	@Schema(name="idReserva", example="1")
 	private Long idReserva;
+	@Schema(name="customerName", example="Aitor Tilla")
 	private String customerName;
+	@Schema(name="dni", example="12312312A")
 	private String Dni;
+	@Schema(name="idHotel", example="1")
 	private Long idHotel;
+	@Schema(name="idVuelo", example="1")
 	private Long idVuelo;
 
 	public Booking() {
