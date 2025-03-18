@@ -1,7 +1,7 @@
 # Kafka project
 Basic project to practice microservice communication using kafka. <br> 
 Hotel service will publish a new message to the topic every time a new Hotel is posted. <br> 
-Booking service will be listening to the topic, adding Hotels from the topic to a list that will be displayed by the fronted. <br> 
+Booking service will be listening to the topic, adding Hotels from the topic to a list that will be displayed by the frontend. <br> 
 
 ## Booking service - booking-kafka.properties
 spring.kafka.bootstrap-servers=http://192.168.1.83:9092 <br>
